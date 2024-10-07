@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <p id="para" style="color: red"></p>
+    <p id= "para2" style="color: red"></p>
+    <p id= "para3" style="color: red"></p>
+    <form id="form">
+      <label for="email">Email</label>
+      <input
+        type="text"
+        name="email"
+        id="email"
+        placeholder="enter your email address"
+      /><br /><br />
+      <label for="Password">Password</label>
+      <input type="password" name="Password" id="Password" /><br /><br />
+      <input type="submit" value="submit" />
+    </form>
+
+
+    <!-- script -->
+    <script>
+      let form = document.getElementById("form");
+      let p = document.getElementById("para");
+      let p1 = document.getElementById("para2");
+      let p2 = document.getElementById("para3");
+      let input = document.getElementById("email");
+      let password = document.getElementById("Password");
+
+      form.addEventListener("submit", (e) => {
+          e.preventDefault();
+          let text = input.value;
+          const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+          if (text.match(regex)) {
+            p.innerHTML = "Your email is in correct format you can proceed forward";
+          } else {
+            p.innerHTML = `please check the email format.
+                  It must contain an @ symbol.
+                  The domain part must have at least one . (dot) after the @.
+                  The domain part should only contain alphanumeric characters and dots (e.g., gmail.com or yahoo.co.uk).`;
+              }
+      });
+
+      form.addEventListener("submit", (e) => {
+          arr = [];
+          e.preventDefault();
+          let text = input.value
+          let regex = /\d+/
+          const numbers = text.match(regex);
+          numbers.map(e=>{
+              arr.push(e);
+          })
+          p1.innerHTML = arr
+      });
+
+      form.addEventListener("sumbit", (e) => {
+        e.preventDefault();
+        let text = password.value;
+        let regex =
+          /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+        let result = regex.test(text);
+        if(result){
+            p2.innerHTML = "password is set"
+        }
+        else{
+            p2.innerHTML = "enter crct format"
+        }
+      });
+    </script>
+  </body>
+</html>
